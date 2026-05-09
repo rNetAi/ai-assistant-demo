@@ -1,0 +1,93 @@
+{
+  "name": "rnet-ai-agent",
+  "displayName": "AI Assistant",
+  "description": "Basic AI Assistant for VS Code demonstrating rNet SSO.",
+  "version": "1.0.0",
+  "publisher": "rnet-ai",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rnet-ai/ai-assistant-demo"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Education",
+    "Developer Tools"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "rnet",
+    "sso",
+    "llm",
+    "assistant",
+    "security",
+    "productivity"
+  ],
+  "activationEvents": [
+    "onView:ai-agent-sidebar",
+    "onUri"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai.login",
+        "title": "AI: Login with RNet"
+      },
+      {
+        "command": "ai.logout",
+        "title": "AI: Logout"
+      },
+      {
+        "command": "ai.chat",
+        "title": "AI: Chat About Workspace"
+      },
+      {
+        "command": "ai.resetSession",
+        "title": "AI: Reset Session and Clear Cache"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-agent",
+          "title": "AI Assistant",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ai-agent": [
+        {
+          "type": "webview",
+          "id": "ai-agent-sidebar",
+          "name": "AI Chat"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "build": "node esbuild.js",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@rnet-ai/rnet-sso-node": "file:../rnet-sso-node"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}
