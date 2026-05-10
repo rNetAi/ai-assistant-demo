@@ -97,6 +97,9 @@ export class AgentController {
                     await this.sessionManager.addMessage({ role: 'assistant', content: response.summary, type: 'text', timestamp: Date.now() });
                     break;
                 }
+
+                // Added delay between AI model calls to avoid rate limits
+                await new Promise(resolve => setTimeout(resolve, this.loopConfig.delayBetweenStepsMs));
             }
         } catch (err: any) {
             logger.error('Agent loop failed', err);

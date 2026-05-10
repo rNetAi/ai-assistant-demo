@@ -101,7 +101,7 @@ export class SidebarWebviewProvider implements vscode.WebviewViewProvider {
         <div id="login-screen" class="screen login-screen">
             <h1>AI Assistant</h1>
             <p>Professional coding agent for your workspace.</p>
-            <button id="btn-login" class="btn btn-primary">Login with rNet</button>
+            <button id="btn-login" class="btn btn-primary">Login with RNet</button>
         </div>
 
         <div id="chat-screen" class="screen hidden">

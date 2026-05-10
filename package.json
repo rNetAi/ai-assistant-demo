@@ -1,9 +1,10 @@
 {
   "name": "rnet-ai-agent",
   "displayName": "AI Assistant",
-  "description": "Basic AI Assistant for VS Code demonstrating rNet SSO.",
+  "description": "Basic AI Assistant for VS Code demonstrating RNet SSO.",
   "version": "1.0.0",
   "publisher": "rnet-ai",
+  "license": "MIT",
   "icon": "media/icon.png",
   "galleryBanner": {
     "color": "#1e1e1e",
@@ -11,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rnet-ai/ai-assistant-demo"
+    "url": "https://github.com/rNetAi/ai-assistant-demo"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -82,12 +83,12 @@
     "package": "npm run build && npx @vscode/vsce package --no-dependencies"
   },
   "dependencies": {
-    "@rnet-ai/rnet-sso-node": "file:../rnet-sso-node"
+    "@rnet-ai/rnet-sso-node": "0.2.0-beta.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/vscode": "^1.85.0",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.28.0",
     "typescript": "^5.3.0"
   }
 }

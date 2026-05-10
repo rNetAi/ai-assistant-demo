@@ -63,7 +63,7 @@ export interface AgentLoopConfig {
 
 export const DEFAULT_LOOP_CONFIG: AgentLoopConfig = {
     maxSteps: 20,
-    delayBetweenStepsMs: 300,
+    delayBetweenStepsMs: 2000,
     maxRetries: 3,
     retryDelayMs: 3000,
     maxFilesPerStep: 15,

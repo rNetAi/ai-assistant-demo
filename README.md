@@ -1,22 +1,22 @@
-# Demo: rNet SSO + Agent
+# Demo: RNet SSO + Agent
 
-**AI Assistant** is an autonomous coding agent demonstrating secure, frictionless AI token sharing via the **rNet SSO** ecosystem.
+**AI Assistant** is an autonomous coding agent demonstrating secure, frictionless AI token sharing via the **RNet SSO** ecosystem.
 
-## Benefits of rNet SSO
+## Benefits of RNet SSO
 
-rNet SSO provides a "Log in with AI" experience:
+RNet SSO provides a "Log in with AI" experience:
 - **Zero Friction:** Users log in once and share AI tokens across Web, CLI, and IDEs. No manual API key pasting.
-- **Developer Simplicity:** Focus on agent logic. rNet handles the backend AI provider proxying, usage limits, and billing.
+- **Developer Simplicity:** Focus on agent logic. RNet handles the backend AI provider proxying, usage limits, and billing.
 
 ## Features
 - **Autonomous Agent:** Refactors code, fixes bugs, and runs commands automatically.
 - **Persistent Sessions:** History is saved locally and survives restarts.
-- **rNet SSO Auth:** Secure, one-click authentication.
+- **RNet SSO Auth:** Secure, one-click authentication.
 
 ## Installation
 1. Install the `.vsix` file.
 2. Click the **AI Assistant** icon in the Activity Bar.
-3. Click **Login with rNet**.
+3. Click **Login with RNet**.
 
 ## License
 MIT License. See [LICENSE](LICENSE).

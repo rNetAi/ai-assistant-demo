@@ -8,7 +8,7 @@ import { SidebarWebviewProvider } from './ui/sidebarWebview';
 import { logger } from './utils/logger';
 
 export async function activate(context: vscode.ExtensionContext) {
-    logger.info('rNet AI Assistant Activation Started');
+    logger.info('rNet Ai Assistant Activation Started');
 
     // 1. Initialize Core Managers
     const authManager = new RNetAuthManager();
@@ -41,7 +41,7 @@ export async function activate(context: vscode.ExtensionContext) {
             try {
                 const tokens = await authManager.login();
                 await sessionManager.storeTokens(tokens.access_token, tokens.refresh_token);
-                vscode.window.showInformationMessage('Logged in to rNet AI Assistant ✓');
+                vscode.window.showInformationMessage('Logged in to rNet Ai Assistant ✓');
             } catch (err: any) {
                 vscode.window.showErrorMessage(`Login failed: ${err.message}`);
             }
@@ -49,7 +49,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         vscode.commands.registerCommand('ai.logout', async () => {
             await sessionManager.logout();
-            vscode.window.showInformationMessage('Logged out from rNet AI Assistant');
+            vscode.window.showInformationMessage('Logged out from rNet Ai Assistant');
         }),
 
         vscode.commands.registerCommand('ai.resetSession', async () => {
@@ -59,7 +59,7 @@ export async function activate(context: vscode.ExtensionContext) {
         })
     );
 
-    logger.info('rNet AI Assistant Ready ✓');
+    logger.info('rNet Ai Assistant Ready ✓');
 }
 
 export function deactivate() {}

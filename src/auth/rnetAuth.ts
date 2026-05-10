@@ -28,7 +28,7 @@ export class RNetAuthManager {
      * Executes the login flow using VS Code's external uri handler.
      */
     async login(): Promise<TokenResponse> {
-        logger.info('Starting rNet SSO login flow (PKCE)...');
+        logger.info('Starting RNet SSO login flow (PKCE)...');
 
         // 1. Generate PKCE
         const { verifier, challenge } = this.auth.generatePKCE();
@@ -48,7 +48,7 @@ export class RNetAuthManager {
                         if (code) {
                             try {
                                 const tokens = await this.auth.exchangeCodeForToken(code, verifier);
-                                logger.info('rNet SSO login successful');
+                                logger.info('RNet SSO login successful');
                                 resolve(tokens);
                             } catch (err: any) {
                                 logger.error('Token exchange failed', err);
