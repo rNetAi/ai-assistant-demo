@@ -1,7 +1,7 @@
 {
   "name": "rnet-ai-agent",
   "displayName": "AI Assistant",
-  "description": "Basic AI Assistant for VS Code demonstrating RNet SSO.",
+  "description": "Basic AI Assistant for VS Code demonstrating RNet OAuth.",
   "version": "1.0.0",
   "publisher": "rnet-ai",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "ai",
     "agent",
     "rnet",
-    "sso",
+    "oauth",
     "llm",
     "assistant",
     "security",
@@ -83,7 +83,7 @@
     "package": "npm run build && npx @vscode/vsce package --no-dependencies --allow-package-env-file"
   },
   "dependencies": {
-    "@rnet-ai/rnet-sso-node": "1.0.0",
+    "@rnet-ai/rnet-oauth-node": "^1.0.0",
     "dotenv": "^16.4.7"
   },
   "devDependencies": {

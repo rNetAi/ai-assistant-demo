@@ -1,4 +1,4 @@
-import { RNetAi } from '@rnet-ai/rnet-sso-node';
+import { RNetAi } from '@rnet-ai/rnet-oauth-node';
 import { SessionManager } from '../auth/session';
 import { RNetAuthManager } from '../auth/rnetAuth';
 import { EditorContext, AgentResponse, AgentLoopConfig, DEFAULT_LOOP_CONFIG } from './schema';

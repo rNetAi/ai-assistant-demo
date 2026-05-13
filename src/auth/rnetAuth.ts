@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { RNetAuth, RNetAuthConfig, RNetAi, TokenResponse } from '@rnet-ai/rnet-sso-node';
+import { RNetAuth, RNetAuthConfig, RNetAi, TokenResponse } from '@rnet-ai/rnet-oauth-node';
 import { logger } from '../utils/logger';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
@@ -33,7 +33,7 @@ export class RNetAuthManager {
      * Executes the login flow using VS Code's external uri handler.
      */
     async login(): Promise<TokenResponse> {
-        logger.info('Starting RNet SSO login flow (PKCE + State)...');
+        logger.info('Starting RNet OAuth login flow (PKCE + State)...');
 
         // 1. Generate PKCE and State
         const { verifier, challenge } = this.auth.generatePKCE();
@@ -61,7 +61,7 @@ export class RNetAuthManager {
                         if (code) {
                             try {
                                 const tokens = await this.auth.exchangeCodeForToken(code, verifier);
-                                logger.info('RNet SSO login successful');
+                                logger.info('RNet OAuth login successful');
                                 resolve(tokens);
                             } catch (err: any) {
                                 logger.error('Token exchange failed', err);
