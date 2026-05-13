@@ -1,6 +1,11 @@
 import * as vscode from 'vscode';
 import { RNetAuth, RNetAuthConfig, RNetAi, TokenResponse } from '@rnet-ai/rnet-sso-node';
 import { logger } from '../utils/logger';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+// Load .env from the extension directory
+dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 /**
  * Professional RNet Auth Manager.
@@ -12,8 +17,8 @@ export class RNetAuthManager {
 
     constructor() {
         const config: RNetAuthConfig = {
-            clientId: '<application-client-id>',
-            clientSecret: '<application-client-secret>',
+            clientId: process.env.RNET_CLIENT_ID || '',
+            clientSecret: process.env.RNET_CLIENT_SECRET || '',
             redirectUri: 'vscode://rnet-ai.rnet-ai-agent/auth-callback'
         };
         this.auth = new RNetAuth(config);
@@ -28,11 +33,12 @@ export class RNetAuthManager {
      * Executes the login flow using VS Code's external uri handler.
      */
     async login(): Promise<TokenResponse> {
-        logger.info('Starting RNet SSO login flow (PKCE)...');
+        logger.info('Starting RNet SSO login flow (PKCE + State)...');
 
-        // 1. Generate PKCE
+        // 1. Generate PKCE and State
         const { verifier, challenge } = this.auth.generatePKCE();
-        const authUrl = this.auth.getAuthorizationUrl(challenge);
+        const state = Math.random().toString(36).substring(2, 15);
+        const authUrl = this.auth.getAuthorizationUrl(challenge, state);
 
         // 2. Open Browser
         await vscode.env.openExternal(vscode.Uri.parse(authUrl));
@@ -44,6 +50,13 @@ export class RNetAuthManager {
                     if (uri.path === '/auth-callback') {
                         const query = new URLSearchParams(uri.query);
                         const code = query.get('code');
+                        const receivedState = query.get('state');
+
+                        if (receivedState !== state) {
+                            reject(new Error('State mismatch: potential CSRF attack'));
+                            disposable.dispose();
+                            return;
+                        }
 
                         if (code) {
                             try {

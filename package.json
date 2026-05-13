@@ -80,10 +80,11 @@
     "compile": "tsc -p ./",
     "build": "node esbuild.js",
     "watch": "tsc -watch -p ./",
-    "package": "npm run build && npx @vscode/vsce package --no-dependencies"
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies --allow-package-env-file"
   },
   "dependencies": {
-    "@rnet-ai/rnet-sso-node": "0.2.0-beta.3"
+    "@rnet-ai/rnet-sso-node": "1.0.0",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

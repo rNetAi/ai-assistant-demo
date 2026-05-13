@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 import { RNetAuthManager } from './auth/rnetAuth';
 import { SessionManager } from './auth/session';
 import { ChatSessionManager } from './session/sessionManager';
@@ -8,7 +10,15 @@ import { SidebarWebviewProvider } from './ui/sidebarWebview';
 import { logger } from './utils/logger';
 
 export async function activate(context: vscode.ExtensionContext) {
+    dotenv.config({ path: path.join(context.extensionPath, '.env') });
+
+    if (!process.env.RNET_CLIENT_ID || !process.env.RNET_CLIENT_SECRET) {
+        vscode.window.showErrorMessage('Error: .env file is required with RNET_CLIENT_ID and RNET_CLIENT_SECRET');
+        logger.error('Missing required environment variables: RNET_CLIENT_ID and RNET_CLIENT_SECRET');
+    }
+
     logger.info('rNet Ai Assistant Activation Started');
+    logger.info('System Environment', process.env);
 
     // 1. Initialize Core Managers
     const authManager = new RNetAuthManager();
@@ -62,4 +72,4 @@ export async function activate(context: vscode.ExtensionContext) {
     logger.info('rNet Ai Assistant Ready ✓');
 }
 
-export function deactivate() {}
+export function deactivate() { }
